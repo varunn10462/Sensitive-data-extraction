@@ -1,0 +1,73 @@
+Step1: create a credit card sql query which contains sensitive data of users like : personal info (name,age ,number,credit card number,acccount number etc) also there ssn also :
+Name
+Account Number
+Address
+Member
+DOB
+Gender
+Phone number
+Email
+Card Number
+SSN
+TIN
+
+
+step 2: write a python code which detects this sample data and extracts these details and puts them in excel sheet with columns like:
+Source	Report name	DB	Schema	Table	Is Senstive
+
+
+step 3:
+Yes, the Python script extracts sensitive data from the SQL text and stores it into an Excel file. Below are the steps to run this script and obtain the Excel file with the extracted information:
+
+### Steps to Run the Python Script
+
+1. **Install Required Libraries**:
+   - Make sure you have Python installed on your system.
+   - You need to install the `re` and `pandas` libraries to run this script.
+   - If you don't have them installed, you can install them using pip:
+     ```bash
+     pip install re pandas openpyxl
+     ```
+
+2. **Prepare the SQL Sample Data**:
+   - Place the SQL data into the `sql_data` variable in the script. Make sure the SQL data is correctly formatted and representative of your actual data.
+
+3. **Run the Python Script**:
+   - Copy the entire Python script provided earlier into a new file, for example, `extract_sensitive_data.py`.
+   - Open a terminal or command prompt.
+   - Navigate to the directory where you saved the script.
+   - Run the script using Python:
+     ```bash
+     python extract_sensitive_data.py
+     ```
+
+4. **Review the Output**:
+   - Upon running the script, it will process the SQL data and generate an Excel file named `sensitive_data_detection.xlsx`.
+   - The Excel file will contain a single sheet with columns: `Source`, `Report name`, `DB`, `Schema`, `Table`, and the detected sensitive data fields.
+   - You can open this file using any spreadsheet application like Microsoft Excel or Google Sheets.
+
+### Explanation of the Script
+
+- **Regex Matching**:
+  - The script uses regex patterns to identify sensitive data fields within the SQL text. Each pattern is tailored to detect specific types of information like names, account numbers, etc.
+  - `re.findall` is used to find all occurrences of the patterns in the SQL text.
+
+- **Data Structure**:
+  - Matches found are collected into a list of dictionaries, each representing a row in the Excel sheet. 
+  - Each dictionary contains metadata and the extracted sensitive data field.
+
+- **Pandas DataFrame**:
+  - A `pandas` DataFrame is used to store this data.
+  - The DataFrame is then written to an Excel file using the `to_excel` method from the `pandas` library.
+
+### Additional Notes
+
+- **Customization**:
+  - The script can be modified to adjust regex patterns if the structure of your SQL queries or sensitive data changes.
+  - You can also include additional metadata columns in the DataFrame or change the column names in the Excel file.
+- **Security Considerations**:
+  - Ensure that sensitive information is not exposed in an insecure manner. The generated Excel file should be protected appropriately to limit access to only authorized personnel.
+- **Handling Large SQL Text**:
+  - For very large SQL queries, consider breaking them into smaller parts or using more efficient data extraction techniques if performance becomes an issue.
+
+This approach allows you to easily identify and extract sensitive data from SQL queries and then analyze or report on it in a structured format like an Excel file.
